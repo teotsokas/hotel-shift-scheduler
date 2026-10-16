@@ -41,4 +41,14 @@ public class Shift {
             return false;
 
     }
+
+
+    public ShiftType getType(){
+        if(startHour >= 6 && startHour < 14)
+            return ShiftType.MORNING;
+        else if (startHour >= 14 && startHour < 22)
+            return ShiftType.AFTERNOON;
+        else
+            return ShiftType.NIGHT;
+    }
 }

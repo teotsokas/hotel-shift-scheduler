@@ -4,14 +4,15 @@ public class Employee {
     private String name;
     private double   hourlyRate;
     private ArrayList<Shift> shifts;
+    private Department department;
 
-
-    public Employee(String name, double hourlyRate){
+    public Employee(String name, double hourlyRate, Department department){
         if(hourlyRate <=0)
             throw new IllegalArgumentException("hourlyRate must be > 0, got: " + hourlyRate);
         this.hourlyRate = hourlyRate;
         this.name = name;
         this.shifts = new ArrayList<>();
+        this.department = department;
 
     }
 
@@ -30,7 +31,7 @@ public class Employee {
     }
 
     public void printInfo(){
-        System.out.println("The employee : " + name + " with hourlyRate : " + hourlyRate +" has "  + totalHours() +" hours this week");
+        System.out.println("The employee : " + name + " from the department : " + department + " with hourlyRate : " + hourlyRate +" has "  + totalHours() +" hours this week");
     }
 
     public boolean allRestValid() {

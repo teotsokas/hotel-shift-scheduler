@@ -4,8 +4,8 @@ import java.util.ArrayList;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        Employee teo = new Employee("Teo", 6);
-        Employee marianna = new Employee("marianna", 6);
+        Employee teo = new Employee("Teo", 6, Department.RECEPTION);
+        Employee marianna = new Employee("marianna", 6, Department.CATERING);
        // teo.printInfo();
         // marianna.printInfo();
         Shift s1 = new Shift(7, 15);
@@ -44,19 +44,19 @@ public class Main {
             System.out.println("Shift " + (i+1) +": " + shifts.get(i).length());
         }
 
-        Employee a = new Employee("Teo", 8);
+        Employee a = new Employee("Teo", 8, Department.CLEAN);
         a.addShift(new Shift(7, 15));
         a.addShift(new Shift(7, 15));
         a.addShift(new Shift(7, 15));
         System.out.println("Test A (exp true):  " + a.allRestValid());
 
-        Employee b = new Employee("Marianna", 6);
+        Employee b = new Employee("Marianna", 6, Department.RECEPTION);
         b.addShift(new Shift(7, 15));
         b.addShift(new Shift(15, 23));
         b.addShift(new Shift(7, 15));
         System.out.println("Test B (exp false): " + b.allRestValid());
 
-        Employee c = new Employee("Nikos", 7);
+        Employee c = new Employee("Nikos", 7, Department.CLEAN);
         System.out.println("Test C (exp true):  " + c.allRestValid());
 
         new Shift(0, 8);

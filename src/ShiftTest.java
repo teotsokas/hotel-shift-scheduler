@@ -69,6 +69,42 @@ class ShiftTest {
         assertDoesNotThrow(()-> new Shift(23,7));
     }
 
+    @Test
+    void ShiftStartingAt22IsNight(){
+        Shift s =new Shift(22, 6);
+        assertEquals(ShiftType.NIGHT, s.getType() );
+    }
+
+    @Test
+    void ShiftStartingAt14IsAfternoon(){
+        Shift s =new Shift(14, 0);
+        assertEquals(ShiftType.AFTERNOON, s.getType() );
+    }
+
+    @Test
+    void ShiftStartingAt6IsMorning(){
+        Shift s =new Shift(6, 14);
+        assertEquals(ShiftType.MORNING, s.getType() );
+    }
+
+
+    @Test
+    void ShiftStartingAt13IsAlsoMorning(){
+        Shift s =new Shift(13, 21);
+        assertEquals(ShiftType.MORNING, s.getType() );
+    }
+
+    @Test
+    void ShiftStartingAt21IsAlsoAfternoon(){
+        Shift s =new Shift(21, 5);
+        assertEquals(ShiftType.AFTERNOON, s.getType() );
+    }
+
+    @Test
+    void ShiftStartingAt5IsAlsoNight(){
+        Shift s =new Shift(5, 13);
+        assertEquals(ShiftType.NIGHT, s.getType() );
+    }
 
 
     }
