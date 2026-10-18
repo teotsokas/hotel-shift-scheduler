@@ -1,22 +1,23 @@
 # Hotel Shift Scheduler
 
-A personal Java project: the core of a staff scheduling system for hotels.
-The idea comes from my own experience building weekly shift schedules
-as a hotel operations supervisor.
+Personal Java project: the core of a decision support system for hotel staff scheduling. The idea comes from my own experience building weekly shift schedules as a hotel operations supervisor.
 
-## What it does so far
-- `Shift`: represents a work shift and validates its times and duration.
-- `Employee`: represents a staff member and validates their data.
-- Rest-time rule: checks the minimum rest between two consecutive shifts.
-- Unit tests with JUnit 5, including boundary-value cases.
+## What it does
+- Calculates shift duration, including overnight shifts (e.g. 22:00 → 06:00)
+- Enforces the 11-hour minimum rest rule between consecutive shifts
+- Validates input and rejects invalid data with clear exceptions
 
-## Planned
-- Estimating staff needs from hotel occupancy
-- Building and adjusting a weekly schedule automatically
-- Storing data in a SQL database
+## How it's tested
+16 automated JUnit 5 tests:
+- **Boundary value analysis:** exactly 11 vs 10 hours of rest; hours 0/23 vs -1/24
+- **Negative testing:** invalid input must throw the expected exception
+- **Edge cases:** overnight shifts, an employee with no shifts
+- **Manual mutation testing:** I deliberately introduced bugs and confirmed that a specific test fails each time
 
 ## Running the tests
-Open the project in IntelliJ IDEA and run the tests in `ShiftTest` and `EmployeeTest`.
+Open the project in IntelliJ IDEA and run `ShiftTest` and `EmployeeTest`.
 
-## Author
-Thodoris Tsokas, github.com/teotsokas
+## Next steps
+- Occupancy-based staffing estimation
+- Automatic schedule generation
+- Spring Boot REST API
