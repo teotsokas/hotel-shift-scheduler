@@ -1,37 +1,23 @@
-# Hotel Shift Scheduler (Java)
+# Hotel Shift Scheduler
 
-Core domain model of a **decision support system for hotel staff scheduling**, developed as part of my BSc thesis in Computer Science at the Aristotle University of Thessaloniki.
+Personal Java project: the core of a decision support system for hotel staff scheduling. The idea comes from my own experience building weekly shift schedules as a hotel operations supervisor.
 
-The goal of the full system is to estimate staffing needs from hotel occupancy and automatically build and adjust shift schedules that respect labour rules. This repository contains the first building blocks.
+## What it does
+- Calculates shift duration, including overnight shifts (e.g. 22:00 → 06:00)
+- Enforces the 11-hour minimum rest rule between consecutive shifts
+- Validates input and rejects invalid data with clear exceptions
 
-## What it does so far
+## How it's tested
+16 automated JUnit 5 tests:
+- **Boundary value analysis:** exactly 11 vs 10 hours of rest; hours 0/23 vs -1/24
+- **Negative testing:** invalid input must throw the expected exception
+- **Edge cases:** overnight shifts, an employee with no shifts
+- **Manual mutation testing:** I deliberately introduced bugs and confirmed that a specific test fails each time
 
-**`Shift`**
-- Calculates shift duration, including overnight shifts (e.g. 22:00 → 06:00 = 8 hours)
-- Checks the **11-hour minimum rest** rule between consecutive shifts
-- Validates input: hours must be 0–23 and start ≠ end, otherwise an `IllegalArgumentException` with a clear message is thrown
-
-**`Employee`**
-- Keeps the list of assigned shifts
-- Calculates total weekly hours
-- Checks that **every pair of consecutive shifts** respects the minimum rest rule
-- Rejects a non-positive hourly rate
-
-## Testing
-
-16 automated **JUnit 5** tests (`ShiftTest`, `EmployeeTest`), designed with a QA mindset:
-
-- **Boundary value analysis**: exactly 11 hours of rest (valid) vs 10 (invalid); hours 0 and 23 (accepted) vs -1 and 24 (rejected)
-- **Negative testing**: invalid input must throw the expected exception
-- **Edge cases**: overnight shifts, a shift starting at midnight, an employee with no shifts
-- **Mutation testing (manual)**: the test suite was verified by deliberately introducing bugs (e.g. `>=` → `>`, off-by-one in the loop) and confirming that a specific test fails each time
-
-## How to run
-
-Open the project in IntelliJ IDEA (JDK 17+), then right-click the `src` folder → **Run 'All Tests'**.
+## Running the tests
+Open the project in IntelliJ IDEA and run `ShiftTest` and `EmployeeTest`.
 
 ## Next steps
-
-- Occupancy-based estimation of staffing needs per day and department
-- Automatic schedule generation and rescheduling when an employee is absent
-- REST API (Spring Boot) and database persistence
+- Occupancy-based staffing estimation
+- Automatic schedule generation
+- Spring Boot REST API
