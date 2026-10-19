@@ -1,5 +1,5 @@
 public class Shift {
-    private int endHour, startHour;
+    private  final int endHour, startHour;
     private final double MIN_REST_HOURS = 11;
 
     public Shift(int startHour, int endHour){
@@ -9,7 +9,7 @@ public class Shift {
         else if( endHour < 0 || endHour >23 ){
             throw new IllegalArgumentException("endHour must be >= 0 and <24, got: " + endHour);
         } else if (endHour == startHour) {
-            throw new IllegalArgumentException("endHour and startHour must be diffrent");
+            throw new IllegalArgumentException("endHour and startHour must be different");
         }
         this.endHour = endHour;
         this.startHour = startHour;
@@ -35,10 +35,7 @@ public class Shift {
         else
             rest = next.startHour - endHour;
 
-        if( rest >= MIN_REST_HOURS)
-            return true;
-        else
-            return false;
+        return rest >= MIN_REST_HOURS;
 
     }
 

@@ -16,6 +16,11 @@ public class Employee {
 
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
+
     public void addShift(Shift s){
         shifts.add(s);
 

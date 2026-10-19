@@ -6,8 +6,12 @@ public class Main {
     public static void main(String[] args) {
         Employee teo = new Employee("Teo", 6, Department.RECEPTION);
         Employee marianna = new Employee("marianna", 6, Department.CATERING);
-       // teo.printInfo();
-        // marianna.printInfo();
+        Employee kat = new Employee("kat", 6, Department.CATERING);
+        Employee zax = new Employee("zax", 6, Department.CATERING);
+
+
+         teo.printInfo();
+         marianna.printInfo();
         Shift s1 = new Shift(7, 15);
         Shift s2 = new Shift(15, 23);
         Shift s3 = new Shift(22, 6);
@@ -17,7 +21,20 @@ public class Main {
         Shift s7 = new Shift(9, 17);
         Shift s8 = new Shift(8, 10);
 
+        Hotel agnanti = new Hotel();
+        agnanti.addEmployee(teo);
+        agnanti.addEmployee(marianna);
+        agnanti.addEmployee(kat);
+        agnanti.addEmployee(zax);
+        System.out.println(  "agnanti total employees are: " + agnanti.getEmployeeCount() + " and teo works at " + teo.getDepartment());
+        System.out.println(agnanti.countByDepartment() + "!!!");
+        System.out.println(agnanti.countByDepartment() + "!!!");
+        System.out.println(agnanti.countByDepartment().get(Department.CLEAN));
+        Integer n = agnanti.countByDepartment().get(Department.CLEAN);
+        System.out.println(n);
 
+
+        System.out.println(agnanti.countByDepartment());
 
         teo.addShift(s1);
         teo.addShift(s3);
